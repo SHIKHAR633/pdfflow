@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDFFlow - Free Online PDF Converter</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.6/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    .purple-font {
+      font-family: 'Inter', sans-serif;
+      color: #6B46C1;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const ToolCard = ({ title, description, color, onClick }) => (
+      <div className={`p-4 rounded-lg shadow-md ${color} text-white cursor-pointer`} onClick={onClick}>
+        <h3 className="text-lg font-semibold purple-font">{title}</h3>
+        <p className="text-sm mt-2">{description}</p>
+      </div>
+    );
+
+    const App = () => {
+      const [status, setStatus] = useState('');
+
+      const handleConvert = async (type) => {
+        setStatus(`Processing ${type}...`);
+        try {
+          // Placeholder for file handling (requires user input via form)
+          setStatus(`${type} complete!`);
+        } catch (error) {
+          setStatus(`Error with ${type}`);
+          console.error(error);
+        }
+      };
+
+      return (
+        <div className="min-h-screen bg-gray-100 font-sans">
+          {/* Top Navigation */}
+          <div className="bg-white shadow-md p-4 flex justify-between items-center">
+            <div className="flex space-x-4">
+              <span className="text-xl font-bold purple-font">PDFFlow</span>
+              <div className="relative">
+                <button className="text-gray-600 hover:text-purple-600">All tools</button>
+                <div className="absolute hidden group-hover:block bg-white shadow-md mt-2 p-2">
+                  <a href="#" className="block text-gray-600 hover:text-purple-600">All Tools</a>
+                </div>
+              </div>
+            </div>
+            <div className="flex space-x-4">
+              <button className="text-gray-600 hover:text-purple-600">Log In</button>
+              <button className="bg-blue-600 text-white px-4 py-2 rounded">Sign Up</button>
+            </div>
+          </div>
+          {/* Main Content */}
+          <div className="p-6">
+            <h1 className="text-3xl font-bold purple-font text-center mb-6">Free Online PDF Converter</h1>
+            <p className="text-center text-gray-600 mb-6">Edit and convert PDF files online in your browser. Please select your tool below:</p>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+              {/* Edit Section */}
+              <div className="col-span-1">
+                <h2 className="text-xl font-semibold text-black mb-4">EDIT A PDF FILE</h2>
+                <ToolCard
+                  title="Edit PDF"
+                  description="A tool to edit a PDF file online. Add or delete text, mark sentences, upload images and many more PDF editor features."
+                  color="bg-yellow-500"
+                  onClick={() => handleConvert('Edit PDF')}
+                />
+                <ToolCard
+                  title="Merge PDF"
+                  description="Combine PDF files in any desired order with our PDF merger."
+                  color="bg-yellow-500"
+                  onClick={() => handleConvert('Merge PDF')}
+                />
+                <ToolCard
+                  title="Split PDF"
+                  description="Separate PDF pages or split the PDF file into a single file per page."
+                  color="bg-yellow-500"
+                  onClick={() => handleConvert('Split PDF')}
+                />
+              </div>
+              {/* Improve Section */}
+              <div className="col-span-1">
+                <h2 className="text-xl font-semibold text-black mb-4">IMPROVE PDF FILES</h2>
+                <ToolCard
+                  title="Compress PDF"
+                  description="Reduce the file size of your PDF online with an option to select your compression level."
+                  color="bg-red-500"
+                  onClick={() => handleConvert('Compress PDF')}
+                />
+                <ToolCard
+                  title="Protect PDF"
+                  description="Password protect a PDF file by specifying a password. Select different options to secure your PDF file."
+                  color="bg-red-500"
+                  onClick={() => handleConvert('Protect PDF')}
+                />
+                <ToolCard
+                  title="Unlock PDF"
+                  description="Unlock and permanently remove a password from a secured PDF. We will unprotect the PDF file."
+                  color="bg-red-500"
+                  onClick={() => handleConvert('Unlock PDF')}
+                />
+              </div>
+              {/* Convert From PDF Section */}
+              <div className="col-span-1">
+                <h2 className="text-xl font-semibold text-black mb-4">CONVERT FROM PDF</h2>
+                <ToolCard
+                  title="PDF to Word"
+                  description="Convert a PDF file to DOC or the Microsoft Word format. The PDF to Word converter lets you easily edit your PDF files."
+                  color="bg-purple-500"
+                  onClick={() => handleConvert('PDF to Word')}
+                />
+                <ToolCard
+                  title="PDF to JPG"
+                  description="This PDF to JPG converter lets you accurately extract and convert PDF to JPG images."
+                  color="bg-purple-500"
+                  onClick={() => handleConvert('PDF to JPG')}
+                />
+                <ToolCard
+                  title="PDF to Text"
+                  description="Convert to text files. Even scans from books inside a PDF will be converted to text using our PDF to OCR engine."
+                  color="bg-purple-500"
+                  onClick={() => handleConvert('PDF to Text')}
+                />
+              </div>
+              {/* Convert To PDF Section */}
+              <div className="col-span-1">
+                <h2 className="text-xl font-semibold text-black mb-4">CONVERT TO PDF</h2>
+                <ToolCard
+                  title="Word to PDF"
+                  description="Our Word to PDF converter allows you to convert a DOC or DOCX to PDF."
+                  color="bg-green-500"
+                  onClick={() => handleConvert('Word to PDF')}
+                />
+                <ToolCard
+                  title="JPG to PDF"
+                  description="A JPG to PDF converter which also allows you to combine several JPG to PDF."
+                  color="bg-green-500"
+                  onClick={() => handleConvert('JPG to PDF')}
+                />
+                <ToolCard
+                  title="EPUB to PDF"
+                  description="An EPUB to PDF converter that allows you to convert the popular ebook format into PDF."
+                  color="bg-green-500"
+                  onClick={() => handleConvert('EPUB to PDF')}
+                />
+              </div>
+            </div>
+            <p className="mt-6 text-center text-gray-600">{status}</p>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
