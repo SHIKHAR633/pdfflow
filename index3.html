@@ -12,10 +12,11 @@
     h1 { text-align: center; font-size: 2rem; margin: 20px 0; }
     p { text-align: center; color: #4a5568; margin-bottom: 20px; }
     .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .card { background-color: #ecc94b; padding: 15px; border-radius: 8px; color: white; }
+    .card { background-color: #ecc94b; padding: 15px; border-radius: 8px; color: white; cursor: pointer; }
     .card h3 { font-size: 1.2rem; font-weight: bold; }
     .card p { font-size: 0.9rem; margin-top: 10px; }
     .section-title { font-size: 1.5rem; font-weight: bold; color: black; margin: 20px 0; }
+    #status { text-align: center; margin-top: 20px; }
     @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -36,29 +37,35 @@
     <div class="grid">
       <div>
         <h2 class="section-title">EDIT A PDF FILE</h2>
-        <div class="card"><h3>Edit PDF</h3><p>A tool to edit a PDF file online.</p></div>
-        <div class="card"><h3>Merge PDF</h3><p>Combine PDF files in any desired order.</p></div>
-        <div class="card"><h3>Split PDF</h3><p>Separate PDF pages or split the PDF file.</p></div>
+        <div class="card" onclick="updateStatus('Edit PDF')"><h3>Edit PDF</h3><p>A tool to edit a PDF file online.</p></div>
+        <div class="card" onclick="updateStatus('Merge PDF')"><h3>Merge PDF</h3><p>Combine PDF files in any desired order.</p></div>
+        <div class="card" onclick="updateStatus('Split PDF')"><h3>Split PDF</h3><p>Separate PDF pages or split the PDF file.</p></div>
       </div>
       <div>
         <h2 class="section-title">IMPROVE PDF FILES</h2>
-        <div class="card"><h3>Compress PDF</h3><p>Reduce the file size of your PDF online.</p></div>
-        <div class="card"><h3>Protect PDF</h3><p>Password protect a PDF file.</p></div>
-        <div class="card"><h3>Unlock PDF</h3><p>Unlock and remove a password from a PDF.</p></div>
+        <div class="card" onclick="updateStatus('Compress PDF')"><h3>Compress PDF</h3><p>Reduce the file size of your PDF online.</p></div>
+        <div class="card" onclick="updateStatus('Protect PDF')"><h3>Protect PDF</h3><p>Password protect a PDF file.</p></div>
+        <div class="card" onclick="updateStatus('Unlock PDF')"><h3>Unlock PDF</h3><p>Unlock and remove a password from a PDF.</p></div>
       </div>
       <div>
         <h2 class="section-title">CONVERT FROM PDF</h2>
-        <div class="card"><h3>PDF to Word</h3><p>Convert a PDF file to DOC format.</p></div>
-        <div class="card"><h3>PDF to JPG</h3><p>Convert PDF to JPG images.</p></div>
-        <div class="card"><h3>PDF to Text</h3><p>Convert to text files using OCR.</p></div>
+        <div class="card" onclick="updateStatus('PDF to Word')"><h3>PDF to Word</h3><p>Convert a PDF file to DOC format.</p></div>
+        <div class="card" onclick="updateStatus('PDF to JPG')"><h3>PDF to JPG</h3><p>Convert PDF to JPG images.</p></div>
+        <div class="card" onclick="updateStatus('PDF to Text')"><h3>PDF to Text</h3><p>Convert to text files using OCR.</p></div>
       </div>
       <div>
         <h2 class="section-title">CONVERT TO PDF</h2>
-        <div class="card"><h3>Word to PDF</h3><p>Convert DOC to PDF.</p></div>
-        <div class="card"><h3>JPG to PDF</h3><p>Convert JPG to PDF.</p></div>
-        <div class="card"><h3>EPUB to PDF</h3><p>Convert EPUB to PDF.</p></div>
+        <div class="card" onclick="updateStatus('Word to PDF')"><h3>Word to PDF</h3><p>Convert DOC to PDF.</p></div>
+        <div class="card" onclick="updateStatus('JPG to PDF')"><h3>JPG to PDF</h3><p>Convert JPG to PDF.</p></div>
+        <div class="card" onclick="updateStatus('EPUB to PDF')"><h3>EPUB to PDF</h3><p>Convert EPUB to PDF.</p></div>
       </div>
     </div>
+    <div id="status"></div>
   </div>
+  <script>
+    function updateStatus(tool) {
+      document.getElementById('status').innerText = `Selected: ${tool}`;
+    }
+  </script>
 </body>
 </html>
